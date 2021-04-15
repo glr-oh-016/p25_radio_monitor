@@ -44,12 +44,14 @@ async def get_help(ctx):
 	# list all commands
 	await ctx.send(
 		'\n `.radio` Commands:' +
-		'\n```connect     Connect to your current voice channel. ' +
-		'\ndisconnect  Leave currently connected voice channel' +
-		'\nping        Get ping of bot' +
-		'\nstart       Start receiver' + 
-		'\nhalt        Kill process on server running bot.' +
-		'\n-h, --help  View help page```' +
+		'\n```connect        Connect to your current voice channel. ' +
+		'\ndisconnect     Leave currently connected voice channel' +
+		'\nping           Get ping of bot' +
+		'\nchannel        Set channel of radio' +
+		'\nstart          Start receiver' + 
+		'\nhalt           Kill process on server running bot.' +
+		'\n-h, --help     View help page```' +
+		'\n-v, --version' +
 		'\n*Visit https://ben-p.dev/p/ohwg-radio-monitor for full documentation*'
 		)
 	
@@ -62,9 +64,26 @@ async def halt(ctx):
 	print('Exiting')
 	exit()
 
+# set zone of radio
+#@client.command()
+#async def zone(ctx, arg):
+#	# add stuff to send command to set radio zone
+#	await ctx.send(f'Setting zone to {arg}')
+
+# set channel of radio
+@client.command()
+async def channel(ctx, arg):
+	# add stuff to set radio channel
+	await ctx.send(f'Setting channel to {arg}')
+
+@client.command()
+async def version(ctx):
+	await ctx.send(f'Radio Monitor Version {version}')
+
 # connect to VC
 @client.command(pass_context = True)
 async def connect(ctx):
+	
 	if (ctx.author.voice):
 		# connect to channel
 		channel = ctx.message.author.voice.channel
@@ -76,10 +95,12 @@ async def connect(ctx):
 	else:
 		await ctx.send('Unable to connect. Are you connected to a VC?')
 		print(f'Unable to connect to VC')
+		
 
 # disconnecting from VC
 @client.command(pass_context = True)
 async def disconnect(ctx):
+	
 	if (ctx.voice_client):
 		await ctx.guild.voice_client.disconnect()
 		await ctx.send('Leaving VC')
