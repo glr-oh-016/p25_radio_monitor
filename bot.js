@@ -15,21 +15,10 @@ const Discord = require('discord.js');	// discord bot
 const fs = require('fs');	// filesystem module, for reading files
 
 // some vars
-const client = new Discord.Client();	// create discord client
+const client = new Discord.Client();	// create discord clientt
 
 // open config file (add more stuff later on)
 const config = require('./config.json');
-
-
-// get token
-var token = fs.readFile('./token', 'utf8', (err, data) => {
-	if (err) {
-		console.error(err);
-		return;
-	}
-	console.log('Attempting to login with token: ' + data);
-});
-
 
 // notify when ready
 client.once('ready', () => {
@@ -37,6 +26,6 @@ client.once('ready', () => {
 });
 
 
-// login with token
-client.login(token);
+// login by opening token file
+client.login(readFileSync('./token', 'utf8'));
 
