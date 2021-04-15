@@ -14,6 +14,9 @@
 const Discord = require('discord.js');	// discord bot
 const fs = require('fs');	// filesystem module, for reading files
 
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js')); // import the commands
+
+
 // some vars
 const client = new Discord.Client();	// create discord clientt
 
@@ -27,5 +30,5 @@ client.once('ready', () => {
 
 
 // login by opening token file
-client.login(readFileSync('./token', 'utf8'));
+client.login(fs.readFileSync('./token', 'utf8'));
 
