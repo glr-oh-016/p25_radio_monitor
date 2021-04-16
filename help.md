@@ -23,7 +23,8 @@ COMMANDS
 
   disconnect     Leave currently connected voice channel
 
-  ping           Get latency of the bot.
+  ping           Get latency of the bot. To run multiple,
+                 append an integer with that value.
 
   channel        Sets radio channel. Zones will be
                  automatically selected. Append the
@@ -35,6 +36,6 @@ COMMANDS
 
   -h, --help     View help page
 
-  -v, --version
+  -v, --version  Show version
 
 ```
