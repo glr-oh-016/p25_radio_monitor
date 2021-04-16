@@ -45,21 +45,25 @@ async def ping(ctx, arg):
 	# get latency TODO: Add -n flag for a loop
 	await ctx.send(f'\n PING OHWG-Radio-Monitor (#7044):')
 	TYPE_ERROR_DIALOG = 'TypeError: Please enter an integer.'
+	latency = f'Latency: {client.latency * 1000}ms' # unsure if this works
 
 	# if there is an arg, loop
 	if arg is int:
 		
 		for i in arg: # TODO: Fix this loop
-			print(f'Latency: {client.latency * 1000}ms')
+			print(latency)
+			ctx.send(latency)
 
 	elif arg is not int:
 		print(TYPE_ERROR_DIALOG)
 
 	elif arg == '': # NOTE: Test this
-		print(f'Latency: {client.latency * 1000}ms')
+		print(latency)
+		ctx.send(latency)
 
 	else:
 		print('Syntax Error: Check formatting')
+
 
 # print basic manpage
 @client.command(aliases=['--help','-h'])
