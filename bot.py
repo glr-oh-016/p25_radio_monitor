@@ -29,7 +29,7 @@ token = open('token', 'r')
 # print start message on bot start
 @client.event
 async def on_ready(): # start when bot is in ready state
-	print('Bot is ready')
+	print('Ready \n')
 
 # get bot latency
 @client.command()
@@ -41,20 +41,8 @@ async def ping(ctx):
 # print basic manpage
 @client.command(aliases=['--help','-h'])
 async def get_help(ctx):
-	# list all commands
-	await ctx.send(
-		'\n `.radio` Commands:' +
-		'\n```connect        Connect to your current voice channel. ' +
-		'\ndisconnect     Leave currently connected voice channel' +
-		'\nping           Get ping of bot' +
-		'\nchannel        Set channel of radio' +
-		'\nstart          Start receiver' + 
-		'\nhalt           Kill process on server running bot.' +
-		'\n-h, --help     View help page```' +
-		'\n-v, --version' +
-		'\n*Visit https://ben-p.dev/p/ohwg-radio-monitor for full documentation*'
-		)
-	
+	# list all commands (TODO: change this reading a file)
+	await ctx.send(open('help.md','r').read())
 	print('Printing help page')
 
 # kill bot
@@ -73,12 +61,12 @@ async def halt(ctx):
 # set channel of radio
 @client.command()
 async def channel(ctx, arg):
-	# add stuff to set radio channel
+	# TODO: Add stuff to send frequency change to op25
 	await ctx.send(f'Setting channel to {arg}')
 
-@client.command()
+@client.command(aliases=['-v','--version'])
 async def version(ctx):
-	await ctx.send(f'Radio Monitor Version {version}')
+	await ctx.send(f'Radio Monitor Version {VERSION}')
 
 # connect to VC
 @client.command(pass_context = True)
@@ -95,7 +83,7 @@ async def connect(ctx):
 	else:
 		await ctx.send('Unable to connect. Are you connected to a VC?')
 		print(f'Unable to connect to VC')
-		
+
 
 # disconnecting from VC
 @client.command(pass_context = True)
