@@ -9,7 +9,7 @@
 # You will need a file named 'token' with 
 # your token in the same directory of the bot
 #
-# TODO: Add audio functionality
+# TODO: Add audio functionality, logging, squelch control.
 #
 
 # version number
@@ -20,9 +20,7 @@ import os           # not sure what this is
 import discord      # for the bot
 from discord.ext import commands	# to use commands to control bot
 from sultan.api import Sultan		# run commands to start p25 decoder
-
-from bot_commands import * # import all commands
-
+import datetime		# for logging
 
 # variables
 client = commands.Bot(command_prefix = '.radio ') # the prefix to the command
@@ -42,34 +40,25 @@ async def on_ready(): # start when bot is in ready state
 @client.command(aliases=['--get-latency','--ping','-p'])
 async def ping(ctx, arg):
 	
-	# get latency TODO: Add -n flag for a loop
+	# get latency
 	await ctx.send(f'\n PING OHWG-Radio-Monitor (#7044):')
-	TYPE_ERROR_DIALOG = 'TypeError: Please enter an integer.'
-	latency = f'Latency: {client.latency * 1000}ms' # unsure if this works
+	
+	# TODO" Add stuff to catch wrong datatype
+	#TYPE_ERROR_DIALOG = 'TypeError: Please enter an integer.'
+	#SYNTAX_ERROR_DIALOG = 'SyntaxError: Check Formatting.'
 
-	# if there is an arg, loop
-	if arg is int:
-		
-		for i in arg: # TODO: Fix this loop
-			print(latency)
-			ctx.send(latency)
+	latency = f' latency={round(client.latency * 1000)}ms'
 
-	elif arg is not int:
-		print(TYPE_ERROR_DIALOG)
-
-	elif arg == '': # NOTE: Test this
-		print(latency)
-		ctx.send(latency)
-
-	else:
-		print('Syntax Error: Check formatting')
+	for i in range(int(arg)):
+		print(latency) # also printing to console
+		await ctx.send(f'try={str(i) + latency}')
 
 
 # print basic manpage
 @client.command(aliases=['--help','-h'])
 async def get_help(ctx):
 	
-	# list all commands (TODO: change this reading a file)
+	# list all commands
 	await ctx.send(open('help.md','r').read())
 	print('Printing help page')
 
