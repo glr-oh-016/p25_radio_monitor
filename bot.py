@@ -37,13 +37,13 @@ async def on_ready(): # start when bot is in ready state
 
 
 # get bot latency
-@client.command(aliases=['--get-latency','--ping','-p'])
+@client.command()
 async def ping(ctx, arg):
 	
 	# get latency
 	await ctx.send(f'\n PING OHWG-Radio-Monitor (#7044):')
 	
-	# TODO" Add stuff to catch wrong datatype
+	# TODO: Add stuff to catch wrong datatype
 	#TYPE_ERROR_DIALOG = 'TypeError: Please enter an integer.'
 	#SYNTAX_ERROR_DIALOG = 'SyntaxError: Check Formatting.'
 
@@ -55,7 +55,7 @@ async def ping(ctx, arg):
 
 
 # print basic manpage
-@client.command(aliases=['--help','-h'])
+@client.command(aliases=['help'])
 async def get_help(ctx):
 	
 	# list all commands
@@ -64,7 +64,7 @@ async def get_help(ctx):
 
 
 # kill bot
-@client.command(aliases=['-H', '--halt'])
+@client.command()
 async def halt(ctx):
 	
 	await ctx.send('\nExiting. Program restart required on server.')
@@ -79,13 +79,13 @@ async def channel(ctx, arg):
 	await ctx.send(f'\nSetting channel to {arg}')
 
 
-@client.command(aliases=['-v','--version'])
+@client.command()
 async def version(ctx):
 	await ctx.send(VERSION)
 
 
 # connect to VC
-@client.command(aliases=['-c', '--connect'], pass_context = True)
+@client.command(pass_context = True)
 async def connect(ctx):
 	
 	if (ctx.author.voice):
@@ -104,7 +104,7 @@ async def connect(ctx):
 
 
 # disconnecting from VC
-@client.command(aliases=['-D','--disconnect'], pass_context = True)
+@client.command(pass_context = True)
 async def disconnect(ctx):
 	
 	if (ctx.voice_client):

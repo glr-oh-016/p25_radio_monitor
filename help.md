@@ -34,8 +34,8 @@ COMMANDS
 
   halt           Kill process on server running bot.
 
-  -h, --help     View help page
+  help           View help page
 
-  -v, --version  Show version
+  version        Show version
 
 ```
