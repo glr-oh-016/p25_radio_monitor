@@ -1,4 +1,4 @@
-# p25-radio-monitor
+# P25 Radio Monitor
 
 This bot will monitor Civil Air Patrol radio traffic and output the audio to a Discord server.
 
