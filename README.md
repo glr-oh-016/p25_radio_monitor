@@ -1,3 +1,7 @@
+# Heads Up
+This is no longer being developed. If someone wants to try, go ahead and fork this. It has been determined that this tool is no longer needed.
+
+
 # P25 Radio Monitor
 
 This bot will monitor Civil Air Patrol radio traffic and output the audio to a Discord server.
